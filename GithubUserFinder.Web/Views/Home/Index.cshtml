@@ -1,0 +1,29 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+}
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+<div class="text-center">
+    <h1 class="display-4" style="font-family:monospace; margin-top:10px">Welcome to Github User Finder!</h1>
+
+    <label> Here you can find any user from Github, and their top 5 most starred repositories! Search for a user below </label>
+    <br />
+
+    <div style="margin-top:20px">
+        <input placeholder="type the username here..." class="input-username" id="name" />
+        <input id="search-button" class="btn btn-outline-dark" type="button" value="Search" />
+        <br />
+        <span id="error-text" style="color:red; display:none">Please enter a valid username</span>
+    </div>
+
+    <div>
+    </div>
+
+    <div id="content" style="margin-top:50px">
+        <img id="github-initial" class="github-initial-gif" src="~/images/github-initial.gif" alt="Welcome!" style="width:450px" />
+
+        <div id="user-info" style="display:none">
+
+        </div>
+    </div>
+</div>

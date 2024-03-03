@@ -1,0 +1,65 @@
+﻿@model GithubUserFinder.Services.DTOs.GithubUserRequestResponseDTO
+
+@{
+    ViewData["Title"] = "GithubUserPartial";
+}
+<div>
+
+    <hr />
+    @if (Model.IsSuccessStatusCode)
+    {
+        <div class="row">
+            <div style="width: 165px">
+                <img class="user-photo" src="@Model.GithubUser.Avatar_Url" alt="User photo" />
+            </div>
+            <div style="width:50px">
+                <ul class="user-information-ul">
+                    <li style="font-size:20px; font-weight: bold">
+                        @Html.DisplayFor(model => model.GithubUser.Login)
+                    </li>
+                    <li style="font-size:15px">
+                        @Html.DisplayFor(model => model.GithubUser.Location)
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <div class="container-cards">
+            @foreach (var repository in Model.GithubUser.UserRepositories)
+            {
+                <div class="card">
+                    <div class="row card-title">
+                        <div>
+                            <a href="@repository.Html_Url" target="_blank" class="repo-name">@repository.Name</a>
+                        </div>
+                    </div>
+
+                    <div class="card-body">
+                        <span>
+                            @repository.Description
+                        </span>
+                    </div>
+
+                    <div class="card-footer">
+                        <div>
+                            <span>
+                                <i class="fa fa-regular fa-star" style="color: #FFD43B;"></i>
+                                <i class="fa fa-light fa-star">@repository.Stargazers_Count</i>
+                            </span>
+                        </div>
+                    </div>
+
+                </div>
+            }
+        </div>
+    }
+    else
+    {
+        <div id="error-message" style="font-size:20px">
+            @Html.DisplayFor(model => model.ErrorMessage)
+            <br />
+            <img id="sad-octocat" class="" src="~/images/sad-octocat.png" alt="limit of requests" style="width:340px; margin-top: 30px;" />
+
+        </div>
+
+    }
+</div>
