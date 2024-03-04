@@ -34,20 +34,12 @@ namespace GithubUserFinder.UnitTests.Services
         }
                 
         [Test]
-        [TestCase("GuilhermeMiranda01", true)]
-        [TestCase("test123456user", false)]
-        public async Task GetTopStargazerReposByUrl_ShouldReturnListOfRepositories(string username, bool isOkStatusCode)
+        public async Task GetTopStargazerReposByUrl_ShouldReturnRepositories()
         {
-            var response = await githubApiService.GetUserAndReposByUsername(username);
-            if (isOkStatusCode)
-            {
-                Assert.That(response.StatusCode, Is.EqualTo("OK"));
-            }
-            else
-            {
-                Assert.That(response.StatusCode, Is.EqualTo("NotFound"));
-            }
+            var response = await githubApiService.GetTopStargazerReposByUrl("https://api.github.com/users/GuilhermeMiranda01/repos");
+            Assert.That(response.Any(), Is.EqualTo(true));
         }
+
 
 
 
