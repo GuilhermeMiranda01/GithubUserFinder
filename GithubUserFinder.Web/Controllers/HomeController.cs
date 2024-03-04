@@ -23,6 +23,12 @@ namespace GithubUserFinder.Web.Controllers
         public async Task<PartialViewResult> GetUserByUsername(string username)
         {
             var result = await _githubApiService.GetUserAndReposByUsername(username);
+            if (result.GithubUser != null && result.GithubUser.UserRepositories != null)
+            {
+                foreach (var repo in result.GithubUser.UserRepositories){
+                    repo.LanguageImage = LanguageImageDictionary.GetLanguageImage(repo.Language);
+                }
+            }
             return PartialView("GithubUserPartial", result);
         }
     }

@@ -7,15 +7,8 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Content Remove="wwwroot\images\net.jpg" />
-  </ItemGroup>
-
-  <ItemGroup>
     <Folder Include="Models\" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <None Include="wwwroot\images\net.jpg" />
+    <Folder Include="wwwroot\images\languages\" />
   </ItemGroup>
 
   <ItemGroup>

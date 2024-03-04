@@ -1,0 +1,1 @@
+To run this app, you will need .NET 7 and Visual Studio.

@@ -23,34 +23,45 @@
                 </ul>
             </div>
         </div>
-        <div class="container-cards">
-            @foreach (var repository in Model.GithubUser.UserRepositories)
-            {
-                <div class="card">
-                    <div class="row card-title">
-                        <div>
-                            <a href="@repository.Html_Url" target="_blank" class="repo-name">@repository.Name</a>
+        @if (Model.GithubUser.UserRepositories.Any())
+        {
+            <h3>Top repositories</h3>
+            <div class="container-cards">
+                @foreach (var repository in Model.GithubUser.UserRepositories)
+                {
+                    <div class="card">
+                        <div class="row card-title">
+                            <div>
+                                <a href="@repository.Html_Url" target="_blank" class="repo-name">@repository.Name</a>
+                            </div>
                         </div>
-                    </div>
 
-                    <div class="card-body">
-                        <span>
-                            @repository.Description
-                        </span>
-                    </div>
-
-                    <div class="card-footer">
-                        <div>
+                        <div class="card-body">
                             <span>
-                                <i class="fa fa-regular fa-star" style="color: #FFD43B;"></i>
-                                <i class="fa fa-light fa-star">@repository.Stargazers_Count</i>
+                                @repository.Description
                             </span>
                         </div>
-                    </div>
 
-                </div>
-            }
-        </div>
+                        <div class="card-footer" style="background-image:url(/wwwroot/images/languages/c-.png)">
+                            <div>
+                                <span>
+                                    <i class="fa fa-light fa-star">@repository.Stargazers_Count</i>
+                                    @if (!String.IsNullOrEmpty(repository.LanguageImage))
+                                    {
+                                        <img src="~/images/languages/@repository.LanguageImage" alt="@repository.LanguageImage" style="width:40px; height: 40px" />
+                                    }
+                                </span>
+                            </div>
+                        </div>
+
+                    </div>
+                }
+            </div>
+        }
+        else
+        {
+            <h3>No public repositories found!</h3>
+        }
     }
     else
     {
